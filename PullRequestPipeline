@@ -1,0 +1,38 @@
+node {
+   stage('clang-format') {
+       echo 'clang-format'
+//       build job: 'pr_clang-format', parameters: [string(name: 'GIT_BASE_REPO', value: env.GIT_BASE_REPO), string(name: 'GIT_HEAD_REPO', value: env.GIT_HEAD_REPO), string(name: 'GIT_SHA1', value: env.GIT_SHA1), string(name: 'GITHUB_URL', value: env.GITHUB_URL), string(name: 'PR', value: env.PR)]
+   }
+
+   stage('cppcheck') {
+       echo 'cppcheck'
+//       build job: 'pr_cppcheck', parameters: [string(name: 'GIT_BASE_REPO', value: env.GIT_BASE_REPO), string(name: 'GIT_HEAD_REPO', value: env.GIT_HEAD_REPO), string(name: 'GIT_SHA1', value: env.GIT_SHA1), string(name: 'GITHUB_URL', value: env.GITHUB_URL), string(name: 'PR', value: env.PR)]
+   }
+
+   stage('flake8') {
+       echo 'Flake8'
+//       build job: 'pr_flake8', parameters: [string(name: 'GIT_BASE_REPO', value: env.GIT_BASE_REPO), string(name: 'GIT_HEAD_REPO', value: env.GIT_HEAD_REPO), string(name: 'GIT_SHA1', value: env.GIT_SHA1), string(name: 'GITHUB_URL', value: env.GITHUB_URL), string(name: 'PR', value: env.PR)]
+   }
+
+   stage('builds') {
+       parallel doxygen: {
+            echo 'Documentation'
+//            build job: 'pr_doxygen', parameters: [string(name: 'GIT_BASE_REPO', value: env.GIT_BASE_REPO), string(name: 'GIT_HEAD_REPO', value: env.GIT_HEAD_REPO), string(name: 'GIT_SHA1', value: env.GIT_SHA1), string(name: 'GITHUB_URL', value: env.GITHUB_URL), string(name: 'PR', value: env.PR)]
+       }, osx: {
+            echo 'OS X'
+//            build job: 'pr_osx', parameters: [string(name: 'GIT_BASE_REPO', value: env.GIT_BASE_REPO), string(name: 'GIT_HEAD_REPO', value: env.GIT_HEAD_REPO), string(name: 'GIT_SHA1', value: env.GIT_SHA1), string(name: 'GITHUB_URL', value: env.GITHUB_URL), string(name: 'PR', value: env.PR)]
+       }, rhel7: {
+            echo 'RHEL7'
+//            build job: 'pr_rhel7', parameters: [string(name: 'GIT_BASE_REPO', value: env.GIT_BASE_REPO), string(name: 'GIT_HEAD_REPO', value: env.GIT_HEAD_REPO), string(name: 'GIT_SHA1', value: env.GIT_SHA1), string(name: 'GITHUB_URL', value: env.GITHUB_URL), string(name: 'PR', value: env.PR)]
+       }, ubuntu: {
+            echo 'Ubuntu'
+//            build job: 'pr_ubuntu', parameters: [string(name: 'GIT_BASE_REPO', value: env.GIT_BASE_REPO), string(name: 'GIT_HEAD_REPO', value: env.GIT_HEAD_REPO), string(name: 'GIT_SHA1', value: env.GIT_SHA1), string(name: 'GITHUB_URL', value: env.GITHUB_URL), string(name: 'PR', value: env.PR)]
+       }, ubuntupy3: {
+            echo 'Ubuntu - Python 3'
+//            build job: 'pr_ubuntu-python3', parameters: [string(name: 'GIT_BASE_REPO', value: env.GIT_BASE_REPO), string(name: 'GIT_HEAD_REPO', value: env.GIT_HEAD_REPO), string(name: 'GIT_SHA1', value: env.GIT_SHA1), string(name: 'GITHUB_URL', value: env.GITHUB_URL), string(name: 'PR', value: env.PR)]
+       }, win7: {
+            echo 'Windows 7'
+//            build job: 'pr_win7', parameters: [string(name: 'GIT_BASE_REPO', value: env.GIT_BASE_REPO), string(name: 'GIT_HEAD_REPO', value: env.GIT_HEAD_REPO), string(name: 'GIT_SHA1', value: env.GIT_SHA1), string(name: 'GITHUB_URL', value: env.GITHUB_URL), string(name: 'PR', value: env.PR)]
+       }
+   }
+}
