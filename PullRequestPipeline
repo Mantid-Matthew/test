@@ -1,7 +1,7 @@
 node {
    stage('clang-format') {
        echo 'clang-format'
-//       build job: 'pr_clang-format', parameters: [string(name: 'GIT_BASE_REPO', value: env.GIT_BASE_REPO), string(name: 'GIT_HEAD_REPO', value: env.GIT_HEAD_REPO), string(name: 'GIT_SHA1', value: env.GIT_SHA1), string(name: 'GITHUB_URL', value: env.GITHUB_URL), string(name: 'PR', value: env.PR)]
+       build job: 'pr_clang-format', parameters: [string(name: 'GIT_HEAD_REPO', value: 'DanNixon/test'), string(name: 'GIT_SHA1', value: env.sha1)]
    }
 
    stage('cppcheck') {
