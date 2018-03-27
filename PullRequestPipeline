@@ -1,8 +1,13 @@
 node {
-   stage('clang-format') {
-       echo 'clang-format'
-       build job: 'pr_clang-format', parameters: [string(name: 'GIT_HEAD_REPO', value: 'DanNixon/test'), string(name: 'GIT_SHA1', value: env.sha1), string(name: 'PR_NUM', value: env.ghprbPullId)]
-   }
+    stage('clang-format') {
+        echo 'clang-format'
+        build job: 'pr_clang-format', parameters: [
+          string(name: 'GIT_HEAD_REPO', value: 'DanNixon/test'),
+          string(name: 'GH_PR_NUMBER', value: env.ghprbPullId),
+          string(name: 'GIT_SHA_TEST', value: env.sha1),
+          string(name: 'GIT_SHA_HEAD', value: env.ghprbActualCommit)
+        ]
+    }
 
    stage('cppcheck') {
        echo 'cppcheck'
