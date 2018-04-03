@@ -21,28 +21,63 @@ node {
 
    stage('flake8') {
        echo 'Flake8'
-//       build job: 'pr_flake8', parameters: [string(name: 'GIT_BASE_REPO', value: env.GIT_BASE_REPO), string(name: 'GIT_HEAD_REPO', value: env.GIT_HEAD_REPO), string(name: 'GIT_SHA1', value: env.GIT_SHA1), string(name: 'GITHUB_URL', value: env.GITHUB_URL), string(name: 'PR', value: env.PR)]
+        build job: 'pr_flake8', parameters: [
+          string(name: 'GIT_HEAD_REPO', value: 'DanNixon/test'),
+          string(name: 'GH_PR_NUMBER', value: env.ghprbPullId),
+          string(name: 'GIT_SHA_TEST', value: env.sha1),
+          string(name: 'GIT_SHA_HEAD', value: env.ghprbActualCommit)
+        ]
    }
 
    stage('builds') {
        parallel doxygen: {
             echo 'Documentation'
-//            build job: 'pr_doxygen', parameters: [string(name: 'GIT_BASE_REPO', value: env.GIT_BASE_REPO), string(name: 'GIT_HEAD_REPO', value: env.GIT_HEAD_REPO), string(name: 'GIT_SHA1', value: env.GIT_SHA1), string(name: 'GITHUB_URL', value: env.GITHUB_URL), string(name: 'PR', value: env.PR)]
+            build job: 'pr_doxygen', parameters: [
+              string(name: 'GIT_HEAD_REPO', value: 'DanNixon/test'),
+              string(name: 'GH_PR_NUMBER', value: env.ghprbPullId),
+              string(name: 'GIT_SHA_TEST', value: env.sha1),
+              string(name: 'GIT_SHA_HEAD', value: env.ghprbActualCommit)
+            ]
        }, osx: {
             echo 'OS X'
-//            build job: 'pr_osx', parameters: [string(name: 'GIT_BASE_REPO', value: env.GIT_BASE_REPO), string(name: 'GIT_HEAD_REPO', value: env.GIT_HEAD_REPO), string(name: 'GIT_SHA1', value: env.GIT_SHA1), string(name: 'GITHUB_URL', value: env.GITHUB_URL), string(name: 'PR', value: env.PR)]
+            build job: 'pr_osx', parameters: [
+              string(name: 'GIT_HEAD_REPO', value: 'DanNixon/test'),
+              string(name: 'GH_PR_NUMBER', value: env.ghprbPullId),
+              string(name: 'GIT_SHA_TEST', value: env.sha1),
+              string(name: 'GIT_SHA_HEAD', value: env.ghprbActualCommit)
+            ]
        }, rhel7: {
             echo 'RHEL7'
-//            build job: 'pr_rhel7', parameters: [string(name: 'GIT_BASE_REPO', value: env.GIT_BASE_REPO), string(name: 'GIT_HEAD_REPO', value: env.GIT_HEAD_REPO), string(name: 'GIT_SHA1', value: env.GIT_SHA1), string(name: 'GITHUB_URL', value: env.GITHUB_URL), string(name: 'PR', value: env.PR)]
+            build job: 'pr_rhel7', parameters: [
+              string(name: 'GIT_HEAD_REPO', value: 'DanNixon/test'),
+              string(name: 'GH_PR_NUMBER', value: env.ghprbPullId),
+              string(name: 'GIT_SHA_TEST', value: env.sha1),
+              string(name: 'GIT_SHA_HEAD', value: env.ghprbActualCommit)
+            ]
        }, ubuntu: {
             echo 'Ubuntu'
-//            build job: 'pr_ubuntu', parameters: [string(name: 'GIT_BASE_REPO', value: env.GIT_BASE_REPO), string(name: 'GIT_HEAD_REPO', value: env.GIT_HEAD_REPO), string(name: 'GIT_SHA1', value: env.GIT_SHA1), string(name: 'GITHUB_URL', value: env.GITHUB_URL), string(name: 'PR', value: env.PR)]
+            build job: 'pr_ubuntu', parameters: [
+              string(name: 'GIT_HEAD_REPO', value: 'DanNixon/test'),
+              string(name: 'GH_PR_NUMBER', value: env.ghprbPullId),
+              string(name: 'GIT_SHA_TEST', value: env.sha1),
+              string(name: 'GIT_SHA_HEAD', value: env.ghprbActualCommit)
+            ]
        }, ubuntupy3: {
             echo 'Ubuntu - Python 3'
-//            build job: 'pr_ubuntu-python3', parameters: [string(name: 'GIT_BASE_REPO', value: env.GIT_BASE_REPO), string(name: 'GIT_HEAD_REPO', value: env.GIT_HEAD_REPO), string(name: 'GIT_SHA1', value: env.GIT_SHA1), string(name: 'GITHUB_URL', value: env.GITHUB_URL), string(name: 'PR', value: env.PR)]
+            build job: 'pr_ubuntu-python3', parameters: [
+              string(name: 'GIT_HEAD_REPO', value: 'DanNixon/test'),
+              string(name: 'GH_PR_NUMBER', value: env.ghprbPullId),
+              string(name: 'GIT_SHA_TEST', value: env.sha1),
+              string(name: 'GIT_SHA_HEAD', value: env.ghprbActualCommit)
+            ]
        }, win7: {
             echo 'Windows 7'
-//            build job: 'pr_win7', parameters: [string(name: 'GIT_BASE_REPO', value: env.GIT_BASE_REPO), string(name: 'GIT_HEAD_REPO', value: env.GIT_HEAD_REPO), string(name: 'GIT_SHA1', value: env.GIT_SHA1), string(name: 'GITHUB_URL', value: env.GITHUB_URL), string(name: 'PR', value: env.PR)]
+            build job: 'pr_win7', parameters: [
+              string(name: 'GIT_HEAD_REPO', value: 'DanNixon/test'),
+              string(name: 'GH_PR_NUMBER', value: env.ghprbPullId),
+              string(name: 'GIT_SHA_TEST', value: env.sha1),
+              string(name: 'GIT_SHA_HEAD', value: env.ghprbActualCommit)
+            ]
        }
    }
 }
