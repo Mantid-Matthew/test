@@ -2,4 +2,4 @@
 
 echo "Running Windows 7 build"
 
-exit 0
+exit 1
