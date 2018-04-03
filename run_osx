@@ -2,4 +2,6 @@
 
 echo "Running OSX build"
 
+sleep 30s
+
 exit 0

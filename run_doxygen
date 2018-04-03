@@ -2,4 +2,6 @@
 
 echo "Running Doxygen"
 
+sleep 20s
+
 exit 0
