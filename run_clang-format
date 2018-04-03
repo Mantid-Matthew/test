@@ -2,4 +2,4 @@
 
 echo "Running clang-format"
 
-exit 1
+exit 0
