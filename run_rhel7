@@ -2,6 +2,6 @@
 
 echo "Running RHEL7 build"
 
-sleep 20s
+sleep 3m
 
 exit 0
