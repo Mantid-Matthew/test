@@ -2,4 +2,6 @@
 
 echo "Running Ubuntu with Python 3 build"
 
+sleep 25s
+
 exit 0

@@ -2,4 +2,6 @@
 
 echo "Running clang-format"
 
+sleep 10s
+
 exit 0

@@ -2,4 +2,6 @@
 
 echo "Running Ubuntu build"
 
+sleep 25s
+
 exit 0

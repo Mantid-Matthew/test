@@ -2,4 +2,6 @@
 
 echo "Running Windows 7 build"
 
+sleep 40s
+
 exit 0

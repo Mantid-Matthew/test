@@ -2,4 +2,6 @@
 
 echo "Running cppcheck"
 
+sleep 10s
+
 exit 0
